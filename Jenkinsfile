@@ -8,7 +8,7 @@ pipeline {
   stages {
     stage('PRINT') {
       steps {
-        echo 'PRINT'
+        sh 'echo $JOB_NAME'
       }
     }
 
