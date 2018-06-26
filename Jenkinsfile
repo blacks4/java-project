@@ -1,34 +1,34 @@
 pipeline {
-  agent any
+  agent master
 
   options {
       buildDiscarder(logRotator(numToKeepStr: '2', artifactNumToKeepStr: '1'))
   }
 
   stages {
-    stage('build') {
+    stage('PRINT') {
       steps {
-        sh 'ant -f build.xml -v'
-        echo 'Building...'
+        echo 'PRINT'
       }
     }
 
-    stage('Test') {
+    stage('WRITE') {
       steps {
-        echo 'Testing...'
+        // echo 'Testing...'
+        sh 'echo $BUILD_NUMBER > build_number'
       }
     }
 
-    stage('Deploy') {
+    stage('READ') {
       steps {
-        echo 'Deploying...'
+        echo 'build_number'
       }
     }
   }
 
   post {
     always {
-      archiveArtifacts artifacts: 'dist/*.jar', fingerprint: true
+      archiveArtifacts artifacts: 'build_number', fingerprint: true
     }
 
   }
