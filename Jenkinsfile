@@ -21,7 +21,7 @@ pipeline {
 
     stage('READ') {
       steps {
-        echo 'build_number'
+        'sh cat build_number'
       }
     }
   }
