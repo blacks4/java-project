@@ -15,7 +15,7 @@ pipeline {
     stage('WRITE') {
       steps {
         // echo 'Testing...'
-        sh 'echo $BUILD_NUMBER > build_number'
+        sh 'echo $BUILD_NUMBER >> build_number'
       }
     }
 
